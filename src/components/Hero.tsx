@@ -68,7 +68,7 @@ export default function Hero() {
             <div className="card glass bg-slate-700">
               <figure className="p-4">
                 <Image
-                  src={userTwitterInfo.profile.replace("_normal", "400x400")}
+                  src={userTwitterInfo.profile.replace("_normal", "_400x400")}
                   className="rounded-full"
                   alt="avatar"
                   width={200}
