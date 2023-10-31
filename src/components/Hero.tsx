@@ -65,7 +65,7 @@ export default function Hero() {
       {isLoggedIn && (
         <>
           <div className="flex flex-row">
-            <div className="card bordered border-slate-100 bg-slate-700">
+            <div className="card glass bg-slate-700">
               <figure className="p-4">
                 <Image
                   src={userTwitterInfo.profile}
