@@ -61,24 +61,24 @@ export const WalletContextProvider = ({
 
     const didToken = await magic.oauth.loginWithRedirect({
       provider: "twitter",
-      redirectURI: "https://aa-intuition-2.vercel.app",
+      redirectURI: window.location.origin,
       scope: ["user:email"] /* optional */,
     });
-    console.log({ didToken });
+    // console.log({ didToken });
 
-    const metadata = await magic.user.getMetadata();
-    console.log({ metadata });
+    // const metadata = await magic.user.getMetadata();
+    // console.log({ metadata });
 
-    if (!didToken || !metadata.publicAddress) {
-      throw new Error("Magic login failed");
-    }
+    // if (!didToken || !metadata.publicAddress) {
+    //   throw new Error("Magic login failed");
+    // }
 
-    setIsLoggedIn(true);
-    connectProviderToAccount(signer);
+    // setIsLoggedIn(true);
+    // connectProviderToAccount(signer);
     // setUsername(metadata.email);
-    setOwnerAddress(metadata.publicAddress as Address);
-    setScaAddress(await provider.getAddress());
-  }, [magic, signer, connectProviderToAccount, provider]);
+    // setOwnerAddress(metadata.publicAddress as Address);
+    // setScaAddress(await provider.getAddress());
+  }, [magic, signer]);
 
   const logout = useCallback(async () => {
     if (!magic || !magic.user) {
@@ -103,6 +103,10 @@ export const WalletContextProvider = ({
         throw new Error("Magic not initialized");
       }
 
+      // Runs after Twitter auth for PoC. Ideal implemenation would be to store id
+      // associations between Twitter IDs and Ethereum accounts in a database.
+      const result = await magic.oauth.getRedirectResult();
+      setUserTwitterInfo(result.oauth.userInfo);
       const isLoggedIn = await magic.user.isLoggedIn();
       console.log({ isLoggedIn });
       // Ideal flow: if not logged in, show default view. If logged in, take DID and call to
@@ -116,8 +120,6 @@ export const WalletContextProvider = ({
 
       // Runs after Twitter auth for PoC. Ideal implemenation would be to store id
       // associations between Twitter IDs and Ethereum accounts in a database.
-      const result = await magic.oauth.getRedirectResult();
-      setUserTwitterInfo(result.oauth.userInfo);
       const metadata = await magic.user.getMetadata();
       console.log({ result, metadata });
 

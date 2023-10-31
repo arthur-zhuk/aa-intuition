@@ -23,12 +23,9 @@ export async function POST(req: Request) {
 
     return NextResponse.json(responseBody);
   } catch (error) {
-    if (typeof error === "object" && error !== null && "message" in error) {
-      console.error("Error:", error.message);
-      return new NextResponse(error.message as BodyInit, { status: 500 });
-    } else {
-      console.error("Error:", error);
-      return new NextResponse(error as BodyInit, { status: 500 });
-    }
+    // @ts-ignore
+    console.error("Error:", error.message);
+    // @ts-ignore
+    return new NextResponse(error.message, { status: 500 });
   }
 }
