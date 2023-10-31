@@ -61,22 +61,24 @@ export const WalletContextProvider = ({
 
     const didToken = await magic.oauth.loginWithRedirect({
       provider: "twitter",
-      redirectURI: window.location.origin,
+      redirectURI: "https://aa-intuition-2.vercel.app",
       scope: ["user:email"] /* optional */,
     });
+    console.log({ didToken });
 
     const metadata = await magic.user.getMetadata();
+    console.log({ metadata });
 
     if (!didToken || !metadata.publicAddress) {
       throw new Error("Magic login failed");
     }
 
-    // setIsLoggedIn(true);
-    // connectProviderToAccount(signer);
+    setIsLoggedIn(true);
+    connectProviderToAccount(signer);
     // setUsername(metadata.email);
-    // setOwnerAddress(metadata.publicAddress as Address);
-    // setScaAddress(await provider.getAddress());
-  }, [magic, signer]);
+    setOwnerAddress(metadata.publicAddress as Address);
+    setScaAddress(await provider.getAddress());
+  }, [magic, signer, connectProviderToAccount, provider]);
 
   const logout = useCallback(async () => {
     if (!magic || !magic.user) {
