@@ -61,7 +61,7 @@ export const WalletContextProvider = ({
 
     const didToken = await magic.oauth.loginWithRedirect({
       provider: "twitter",
-      redirectURI: "https://aa-intuition-2.vercel.app",
+      redirectURI: "https://www.aa-intuition-2.vercel.app",
       scope: ["user:email"] /* optional */,
     });
     console.log({ didToken });
