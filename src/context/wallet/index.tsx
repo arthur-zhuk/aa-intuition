@@ -102,7 +102,7 @@ export const WalletContextProvider = ({
       }
 
       const isLoggedIn = await magic.user.isLoggedIn();
-
+      console.log({ isLoggedIn });
       // Ideal flow: if not logged in, show default view. If logged in, take DID and call to
       // backend to make association between DID and login metadata. This would tell us what
       // Oauth method was used. From there we can obtain the Social ID, pass that to the respective
@@ -117,6 +117,7 @@ export const WalletContextProvider = ({
       const result = await magic.oauth.getRedirectResult();
       setUserTwitterInfo(result.oauth.userInfo);
       const metadata = await magic.user.getMetadata();
+      console.log({ result, metadata });
 
       if (!metadata.publicAddress) {
         throw new Error("Magic login failed");
