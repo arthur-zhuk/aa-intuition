@@ -1,19 +1,3 @@
-// import { NextResponse } from "next/server";
-
-// import { serverEnv } from "@/env/server.mjs";
-
-// export async function POST(req: Request) {
-//   const res = await fetch(serverEnv.ALCHEMY_RPC_URL, {
-//     method: "POST",
-//     headers: {
-//       ...req.headers,
-//     },
-//     body: JSON.stringify(await req.json()),
-//   });
-
-//   return NextResponse.json(await res.json());
-// }
-
 import { NextResponse } from "next/server";
 import { serverEnv } from "@/env/server.mjs";
 
@@ -39,7 +23,12 @@ export async function POST(req: Request) {
 
     return NextResponse.json(responseBody);
   } catch (error) {
-    console.error("Error:", error.message);
-    return new NextResponse(error.message, { status: 500 });
+    if (typeof error === "object" && error !== null && "message" in error) {
+      console.error("Error:", error.message);
+      return new NextResponse(error.message as BodyInit, { status: 500 });
+    } else {
+      console.error("Error:", error);
+      return new NextResponse(error as BodyInit, { status: 500 });
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { magicApiKey } from "@/config/client";
 import { WalletClientSigner, type SmartAccountSigner } from "@alchemy/aa-core";
+// @ts-ignore
 import { OAuthExtension } from "@magic-ext/oauth";
 import { Magic } from "magic-sdk";
 import { WalletClient, createWalletClient, custom } from "viem";
