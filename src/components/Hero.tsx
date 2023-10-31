@@ -71,8 +71,8 @@ export default function Hero() {
                   src={userTwitterInfo.profile}
                   className="rounded-full"
                   alt="avatar"
-                  width={100}
-                  height={100}
+                  width={25}
+                  height={25}
                 />
               </figure>
               <div className="card-body ">
