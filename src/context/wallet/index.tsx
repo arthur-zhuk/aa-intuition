@@ -59,7 +59,7 @@ export const WalletContextProvider = ({
       throw new Error("Magic not initialized");
     }
 
-    const didToken = await magic.oauth.loginWithRedirect({
+    await magic.oauth.loginWithRedirect({
       provider: "twitter",
       redirectURI: window.location.origin,
       scope: ["user:email"] /* optional */,
@@ -118,8 +118,6 @@ export const WalletContextProvider = ({
         return;
       }
 
-      // Runs after Twitter auth for PoC. Ideal implemenation would be to store id
-      // associations between Twitter IDs and Ethereum accounts in a database.
       const metadata = await magic.user.getMetadata();
       console.log({ result, metadata });
 

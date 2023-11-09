@@ -75,14 +75,14 @@ export default function Hero() {
                   height={200}
                 />
               </figure>
-              <div className="card-body ">
+              <div className="card-body">
                 <h2 className="card-title">
                   @{userTwitterInfo.preferredUsername}
                 </h2>
                 <p>Bio: {bio}</p>
                 <div className="divider"></div>
                 <div className="flex justify-between">
-                  <div className="mr-4">
+                  <div className="mr-4 p-2">
                     <p>Favorites: {favoritesCount}</p>
                   </div>
                   <div>
@@ -138,7 +138,7 @@ export default function Hero() {
             <div className="text-5xl font-bold">Account Kit Token</div>
           </div>
           <div className="text-2xl">
-            Mint a FREE ERC-20 token with no gas fees!
+            Mint a FREE ERC-20 token with no gas fees aaa!
           </div>
           <div className="flex flex-row flex-wrap gap-[12px]">
             <button
